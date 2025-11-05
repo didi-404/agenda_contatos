@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda de Contatos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>📞 Minha Agenda de Contatos</h1>
+  </header>
+
+  <main>
+    <section class="formulario">
+      <h2>Adicionar Contato</h2>
+      <form id="formContato">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" required>
+
+        <button type="submit">Cadastrar</button>
+      </form>
+    </section>
+
+    <section class="tabela">
+      <h2>Lista de Contatos</h2>
+      <table id="tabelaContatos">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Telefone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Linhas adicionadas dinamicamente -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>Desenvolvido para o módulo de programação web | © 2025</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('formContato');
+    const tabela = document.getElementById('tabelaContatos').querySelector('tbody');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const nome = document.getElementById('nome').value.trim();
+      const telefone = document.getElementById('telefone').value.trim();
+
+      if (nome && telefone) {
+        const novaLinha = document.createElement('tr');
+        novaLinha.innerHTML = `<td>${nome}</td><td>${telefone}</td>`;
+        tabela.appendChild(novaLinha);
+        form.reset();
+      } else {
+        alert("Por favor, preencha todos os campos!");
+      }
+    });
+  </script>
+
+</body>
+</html>
